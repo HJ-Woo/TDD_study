@@ -31,6 +31,7 @@ public class Frame {
         isStrike = true;
         pin = 0;
         currentScore = 10;
+        totalScore += 10;
     }
 
     public void spare(int spareNum) {
@@ -40,4 +41,24 @@ public class Frame {
         }
         currentScore = 10 - pin;
     }
+
+    public int roll(int firsthit, int secondhit) {
+        hit(firsthit);
+        if (pin == 0) {
+            strike();
+            return totalScore;
+        }
+        spare(secondhit);
+        totalScore += 10 - pin;
+        return totalScore;
+    }
+
+
+//       if(pin == 0) {
+//           strike();
+//       } else {
+//           spare(secondhit);
+//       }
+//       totalScore += 10 - pin;
+//    }
 }
