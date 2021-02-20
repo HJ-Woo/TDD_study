@@ -1,5 +1,6 @@
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 public class FrameTest {
@@ -8,6 +9,7 @@ public class FrameTest {
     //Todo 2. Frame을 초기화 할때 점수를 0으로 초기화한다
     //Todo 3. Frame을 초기화 할때 누적점수를 0으로 초기화한다
     //Todo 4. 총합 점수를 가져오는
+
 
     private Frame frame;
 
@@ -34,17 +36,6 @@ public class FrameTest {
         frame.setTotalScore(10);
         Assertions.assertEquals(frame.currentScore, 5);
         Assertions.assertEquals(frame.totalScore, 10);
-    }
-
-
-    //Todo 1. roll()에서 hit()을 수행한다
-    //Todo 2. hit()을 수행한 다음에 몇개남았는지에 따라서 함수를 실행
-    //Todo 3. hit 0개면은 open 지나간다
-    //Todo 4. hit 10개 미만 spare를 실행 hit()
-    //Todo 5. hit 10개 strike를 실행
-    @Test
-    void rollTest(){
-
     }
 
     //TODO 1. hit()을 수행하면 pin의 수(frame), 쓰러뜨리는 수(parameter)
@@ -99,6 +90,44 @@ public class FrameTest {
         Assertions.assertEquals(frame.pin, 0);
         Assertions.assertEquals(frame.currentScore, 10);
         Assertions.assertEquals(frame.isStrike, true);
+    }
+
+    //Todo 1. roll()에서 hit()을 수행한다
+    //Todo 2. hit()을 수행한 다음에 몇개남았는지에 따라서 함수를 실행
+    //Todo 3. hit 0개면은 open 지나간다
+    //Todo 4. hit 10개 미만 spare를 실행 hit()
+    //Todo 5. hit 10개 strike를 실행
+    @Test
+    void rollStrikeTest(){
+        //Strike
+        int firsthit = 10;
+        int secondhit = 0;
+        frame.roll(firsthit, secondhit);
+        Assertions.assertEquals(frame.totalScore, 10);
+        Assertions.assertEquals(frame.isSpare, false);
+        Assertions.assertEquals(frame.isStrike, true);
+    }
+
+    @Test
+    void rollSpareTest(){
+        int firsthit = 4;
+        int secondhit = 6;
+        frame.roll(firsthit, secondhit);
+        Assertions.assertEquals(frame.totalScore, 10);
+        Assertions.assertEquals(frame.isSpare, true);
+        Assertions.assertEquals(frame.isStrike, false);
+    }
+
+    @Test
+    @DisplayName("spare 실패했을 경우")
+    void rollNotSpareTest(){
+        //Spare실패
+        int firsthit = 0;
+        int secondhit = 5;
+        frame.roll(firsthit, secondhit);
+        Assertions.assertEquals(frame.totalScore, firsthit+secondhit);
+        Assertions.assertEquals(frame.isSpare, false);
+        Assertions.assertEquals(frame.isStrike, false);
     }
 
 }
