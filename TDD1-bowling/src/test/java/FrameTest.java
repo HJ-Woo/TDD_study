@@ -2,7 +2,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-public class FrameTest {
+class FrameTest {
 
     //Todo 1. Frame을 초기화 할때 핀을 10개를 생성한다
     //Todo 2. Frame을 초기화 할때 점수를 0으로 초기화한다

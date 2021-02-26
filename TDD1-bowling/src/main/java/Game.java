@@ -3,12 +3,19 @@ import java.util.List;
 
 public class Game {
 
-    public List<Frame> frames;
+    private List<Frame> frames;
+    private int totalScore;
 
     public Game() {
-        this.frames = new ArrayList<>();
-        for(int i = 0; i < 10; i++){
-            frames.add(new Frame());
-        }
+
+        this.totalScore = 0;
+    }
+
+    public List<Frame> getFrames() {
+        return frames;
+    }
+
+    public int getTotalScore() {
+        return totalScore;
     }
 }
