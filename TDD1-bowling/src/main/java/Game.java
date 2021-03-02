@@ -18,14 +18,6 @@ public class Game {
         return rollNums;
     }
 
-    public int playOneFrame(int i){
-        return frames.playOneFrame(i, rollNums.getOneRollNum(i));
-    }
-
-    public int playLastFrame(){
-        return frames.playLastFrame(rollNums.getOneRollNum(10));
-    }
-
     public void playAllFrame(){
 
     }

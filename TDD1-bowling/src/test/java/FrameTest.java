@@ -34,8 +34,8 @@ class FrameTest {
 
     @Test
     void frameSetScore(){
-        frame.setFirstScroe(5);
-        frame.setSecondScore(10);
+        frame.addFristScore(5);
+        frame.addSecondScore(10);
         Assertions.assertEquals(frame.getFirstScroe(), 5);
         Assertions.assertEquals(frame.getSecondScore(), 10);
     }

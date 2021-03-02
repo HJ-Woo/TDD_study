@@ -34,12 +34,12 @@ public class Frame {
         return isSpare;
     }
 
-    public void setFirstScroe(int firstScroe) {
-        this.firstScroe = firstScroe;
+    public void addFristScore(int firstScroe) {
+        this.firstScroe += firstScroe;
     }
 
-    public void setSecondScore(int secondScore) {
-        this.secondScore = secondScore;
+    public void addSecondScore(int secondScore) {
+        this.secondScore += secondScore;
     }
 
 
@@ -92,6 +92,10 @@ public class Frame {
         roll(3, lastHit);
 
         return new int[]{firstScroe, secondScore};
+    }
+
+    public int getTotal(){
+        return firstScroe + secondScore;
     }
 
 }
