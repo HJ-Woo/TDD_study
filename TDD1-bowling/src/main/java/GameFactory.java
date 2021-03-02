@@ -1,6 +1,10 @@
-public class FrameFactory {
+public class GameFactory {
 
-    public Frames frames(RollNums rollNums) {
-        return new Frames(rollNums);
+    public Frames frames() {
+        return new Frames();
+    }
+
+    public Game game(RollNums rollNums){
+        return new Game(rollNums);
     }
 }

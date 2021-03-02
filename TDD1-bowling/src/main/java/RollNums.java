@@ -1,13 +1,17 @@
-import java.util.LinkedList;
+import java.util.ArrayList;
 
 public class RollNums {
-    private LinkedList<int[]> rollNums;
+    private ArrayList<int[]> rollNums;
 
-    public RollNums(LinkedList<int[]> rollnum) {
+    public RollNums(ArrayList<int[]> rollnum) {
         this.rollNums = rollnum;
     }
 
-    public LinkedList<int[]> getRollNums() {
+    public ArrayList<int[]> getRollNums() {
         return rollNums;
+    }
+
+    public int[] getOneRollNum(int index){
+        return rollNums.get(index-1);
     }
 }

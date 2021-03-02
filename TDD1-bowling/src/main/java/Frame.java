@@ -56,7 +56,7 @@ public class Frame {
 
     public void spare(int spareNum) {
         hit(spareNum);
-        if(this.pin == 0){
+        if(this.pin == 0 && !this.isStrike){
             this.isSpare = true;
         }
         this.secondScore += spareNum;
@@ -75,11 +75,13 @@ public class Frame {
         this.firstScroe += hitNum;
     }
 
-    public void play(int firstHit, int secondHit){
+    public int[] play(int firstHit, int secondHit){
         roll(1, firstHit);
         roll(2, secondHit);
+        return new int[]{firstScroe, secondScore};
     }
-    public void playLast(int firstHit, int secondHit, int lastHit){
+
+    public int[] playLast(int firstHit, int secondHit, int lastHit){
         roll(1, firstHit);
         if(isStrike()) {
             this.isStrike = false;   //마지막 프레임의 isStrike는 double strike일때를 의미
@@ -88,27 +90,8 @@ public class Frame {
         roll(2, secondHit);
         if(isSpare()) this.pin = 10;
         roll(3, lastHit);
+
+        return new int[]{firstScroe, secondScore};
     }
 
-
-//
-//    public int roll(int firsthit, int secondhit) {
-//        hit(firsthit);
-//        if (pin == 0) {
-//            strike();
-//            return totalScore;
-//        }
-//        spare(secondhit);
-//        totalScore += 10 - pin;
-//        return totalScore;
-//    }
-
-
-//       if(pin == 0) {
-//           strike();
-//       } else {
-//           spare(secondhit);
-//       }
-//       totalScore += 10 - pin;
-//    }
 }

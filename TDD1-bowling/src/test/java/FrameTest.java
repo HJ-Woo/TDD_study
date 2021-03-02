@@ -89,6 +89,8 @@ class FrameTest {
         frame.strike();
         Assertions.assertEquals(frame.getPin(), 0);
         Assertions.assertEquals(frame.isStrike(), true);
+        Assertions.assertEquals(frame.isSpare(), false);
+
     }
 
     //Todo 1. roll()에서 hit()을 수행한다
@@ -137,8 +139,10 @@ class FrameTest {
     @Test
     void rollStrikeTest(){
         frame.roll(1, 10);
+        frame.roll(2, 0);
         Assertions.assertEquals(frame.getPin(), 0);
         Assertions.assertEquals(frame.isStrike(), true);
+        Assertions.assertEquals(frame.isSpare(), false);
         Assertions.assertEquals(frame.getFirstScroe(), 10);
     }
 
