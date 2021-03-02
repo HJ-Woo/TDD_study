@@ -86,4 +86,12 @@ public class Frames {
         if(checkStrikeQ() > EmptyResult) addStrikeScore(score);
         if(checkSpareQ() > EmptyResult) addSpareScore(score);
     }
+
+    public int sumAllFrame(){
+        int sum = 0;
+        for(Frame frame : frameList){
+            sum += frame.getTotal();
+        }
+        return sum;
+    }
 }

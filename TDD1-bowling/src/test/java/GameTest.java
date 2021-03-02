@@ -37,7 +37,12 @@ class GameTest {
 
 
     @Test
-    void i번째_프레임이_strike일때의_점수계산(){
+    void 전체프레임의_점수를_합산한다(){
+
+    }
+
+    @Test
+    void 전체프레임을_실행한다(){
 
     }
 

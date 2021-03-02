@@ -7,7 +7,7 @@ public class Game {
     public Game(RollNums rollNums) {
         this.frames = new Frames();
         this.totalScore = 0;
-        this.rollNums =rollNums;
+        this.rollNums = rollNums;
     }
 
     public int getTotalScore() {
@@ -16,6 +16,10 @@ public class Game {
 
     public RollNums getRollNums() {
         return rollNums;
+    }
+
+    public void sumAllFrame(){
+        totalScore = frames.sumAllFrame();
     }
 
     public void playAllFrame(){
