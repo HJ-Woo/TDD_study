@@ -1,24 +1,45 @@
 public class Frame {
 
-    public int pin;
-    public int currentScore;
-    public int totalScore;
-    public boolean isStrike;
-    public boolean isSpare;
+    private int pin;
+    private int firstScroe;
+    private int secondScore;
+    private boolean isStrike;
+    private boolean isSpare;
 
     public Frame(){
         this.pin = 10;
-        this.currentScore = 0;
-        this.totalScore = 0;
+        this.firstScroe = 0;
+        this.secondScore = 0;
         this.isStrike = false;
     }
 
-    public void setCurrentScore(int score){
-        this.currentScore = score;
+    public int getPin() {
+        return pin;
     }
 
-    public void setTotalScore(int score){
-        this.totalScore = score;
+    public int getFirstScroe() {
+        return firstScroe;
+    }
+
+    public int getSecondScore() {
+        return secondScore;
+    }
+
+
+    public boolean isStrike() {
+        return isStrike;
+    }
+
+    public boolean isSpare() {
+        return isSpare;
+    }
+
+    public void addFristScore(int firstScroe) {
+        this.firstScroe += firstScroe;
+    }
+
+    public void addSecondScore(int secondScore) {
+        this.secondScore += secondScore;
     }
 
 
@@ -28,37 +49,53 @@ public class Frame {
 
 
     public void strike() {
-        isStrike = true;
-        pin = 0;
-        currentScore = 10;
-        totalScore += 10;
+        this.isStrike = true;
+        this.pin = 0;
+        this.firstScroe += 10;
     }
 
     public void spare(int spareNum) {
         hit(spareNum);
-        if(pin == 0){
-            isSpare = true;
+        if(this.pin == 0 && !this.isStrike){
+            this.isSpare = true;
         }
-        currentScore = 10 - pin;
+        this.secondScore += spareNum;
     }
 
-    public int roll(int firsthit, int secondhit) {
-        hit(firsthit);
-        if (pin == 0) {
+    public void roll(int rollNum, int hitNum){
+        if(hitNum == 10 && rollNum < 3){
             strike();
-            return totalScore;
+            return;
         }
-        spare(secondhit);
-        totalScore += 10 - pin;
-        return totalScore;
+        if(rollNum >= 2){
+            spare(hitNum);
+            return;
+        }
+        hit(hitNum);
+        this.firstScroe += hitNum;
     }
 
+    public int[] play(int firstHit, int secondHit){
+        roll(1, firstHit);
+        roll(2, secondHit);
+        return new int[]{firstScroe, secondScore};
+    }
 
-//       if(pin == 0) {
-//           strike();
-//       } else {
-//           spare(secondhit);
-//       }
-//       totalScore += 10 - pin;
-//    }
+    public int[] playLast(int firstHit, int secondHit, int lastHit){
+        roll(1, firstHit);
+        if(isStrike()) {
+            this.isStrike = false;   //마지막 프레임의 isStrike는 double strike일때를 의미
+            this.pin = 10;
+        }
+        roll(2, secondHit);
+        if(isSpare()) this.pin = 10;
+        roll(3, lastHit);
+
+        return new int[]{firstScroe, secondScore};
+    }
+
+    public int getTotal(){
+        return firstScroe + secondScore;
+    }
+
 }
