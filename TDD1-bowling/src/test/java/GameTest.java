@@ -5,9 +5,12 @@ import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 class GameTest {
     private GameFactory gameFactory;
     private Game game;
+    private Game perfectGame;
 
     @BeforeEach
     void setUpGame() {
@@ -24,8 +27,16 @@ class GameTest {
         rollnum.add(new int[]{1, 2, 3});
         RollNums rollNums = new RollNums(rollnum);
 
+        ArrayList<int[]> perfectRollNum = new ArrayList<>();
+        for(int i=0; i<9; i++){
+            perfectRollNum.add(new int[]{10, 0});
+        }
+        perfectRollNum.add(new int[]{10, 10, 10});
+        RollNums perfectRollNums = new RollNums(perfectRollNum);
+
         gameFactory = new GameFactory();
-        this.game = gameFactory.game(rollNums);
+        game = gameFactory.game(rollNums);
+        perfectGame = gameFactory.game(perfectRollNums);
     }
 
     @Test
@@ -35,15 +46,13 @@ class GameTest {
 
     }
 
-
     @Test
-    void 전체프레임의_점수를_합산한다(){
+    void 전체프레임을_실행하고_점수합산한다(){
+        game.playAllFrame();
+        assertThat(game.getTotalScore()).isEqualTo(86);
 
-    }
-
-    @Test
-    void 전체프레임을_실행한다(){
-
+        perfectGame.playAllFrame();
+        assertThat(perfectGame.getTotalScore()).isEqualTo(300);
     }
 
 }

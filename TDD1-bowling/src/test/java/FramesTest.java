@@ -2,6 +2,8 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 class FramesTest {
     public Frames frames;
 
@@ -28,6 +30,15 @@ class FramesTest {
     void framesCreateTest(){
         Assertions.assertEquals(frames.getFrameList().size(), 10);
         Assertions.assertEquals(frames.getFrameList().get(0).getClass(), Frame.class);
+    }
+
+    @Test
+    void 점수초기화테스트(){
+        for(Frame frame: frames.getFrameList()){
+            assertThat(frame.getFirstScroe()).isEqualTo(0);
+            assertThat(frame.getSecondScore()).isEqualTo(0);
+            assertThat(frame.getTotal()).isEqualTo(0);
+        }
     }
 
 
@@ -71,4 +82,9 @@ class FramesTest {
         Assertions.assertEquals(frames.getFrameList().get(strikeIndex+1).getSecondScore(), 17);
     }
 
+    @Test
+    void 전체_프레임의점수를_구한다(){
+        frames.playFrame(strikeIndex, new int[]{10, 0});
+        assertThat(frames.sumAllFrame()).isEqualTo(10);
+    }
 }
