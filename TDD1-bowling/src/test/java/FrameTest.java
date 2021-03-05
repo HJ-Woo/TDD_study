@@ -103,9 +103,9 @@ class FrameTest {
     void rollSpareFalseTest(){
         frame.roll(1, 1);
         frame.roll(2, 2);
-        Assertions.assertEquals(frame.getPin(), 1);
+        Assertions.assertEquals(frame.getPin(), 7);
         Assertions.assertEquals(frame.getFirstScroe(), 1);
-        Assertions.assertEquals(frame.getSecondScore(), 8);
+        Assertions.assertEquals(frame.getSecondScore(), 2);
     }
 
 
@@ -113,9 +113,9 @@ class FrameTest {
     @Test
     void playLastSpareTest(){
         frame.playLast(1, 9, 10);
-        Assertions.assertEquals(frame.getFirstScroe(), 1);
+        Assertions.assertEquals(frame.getFirstScroe(), 11);
         Assertions.assertEquals(frame.isSpare(), true);
-        Assertions.assertEquals(frame.getSecondScore(), 19);
+        Assertions.assertEquals(frame.getSecondScore(), 9);
     }
 
     @Test
@@ -125,9 +125,9 @@ class FrameTest {
         Assertions.assertEquals(frame.getSecondScore(), 9);
     }
     @Test
-    void playLastTwoStrikeTest(){
-        frame.playLast(10, 10, 0);
-        Assertions.assertEquals(frame.getFirstScroe(), 20);
+    void playLastTripleStrikeTest(){
+        frame.playLast(10, 10, 10);
+        Assertions.assertEquals(frame.getFirstScroe(), 30);
         Assertions.assertEquals(frame.isStrike(), true);
         Assertions.assertEquals(frame.getSecondScore(), 0);
     }

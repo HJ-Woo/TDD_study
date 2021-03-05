@@ -11,7 +11,7 @@ public class Frames {
 
 
     private static final int EmptyResult = -1;
-    private static final int FrameNum = 10;
+    public static final int FrameNum = 10;
 
     public Frames() {
         this.frameList = new ArrayList<>();
@@ -46,8 +46,8 @@ public class Frames {
             if(score == 0) continue;
             setScoreSpecial(score);
         }
-        checkSpecial(frame, FrameNum - 1);
-        frameList.set(FrameNum - 1, frame);
+        checkSpecial(frame, index);
+        frameList.set(index, frame);
     }
 
 
