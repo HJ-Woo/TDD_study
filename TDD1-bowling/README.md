@@ -1,5 +1,5 @@
 ### Bowling-Game 구현 (2021.02.20)
-참고 Git link
+[참고자료](https://kata-log.rocks/bowling-game-kata) [Git](https://github.com/msbaek/bowling-game)
 
 - 요구사항
   - 볼링 게임은 10개의 프레임으로 구성된다.
